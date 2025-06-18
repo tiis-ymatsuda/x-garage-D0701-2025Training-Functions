@@ -37,7 +37,7 @@ def http_trigger(req: func.HttpRequest) -> func.HttpResponse:
             # データベース接続を開く
             with connection.cursor() as cursor:
                 # パラメータ化クエリを使用してSQLインジェクションを防止
-                cursor.execute('SELECT name FROM D0750 WHERE id = ?', (id,))
+                cursor.execute('SELECT name FROM D0701 WHERE id = ?', (id,))
                 row = cursor.fetchone()
 
                 # データが見つからない場合はエラーレスポンスを返す
