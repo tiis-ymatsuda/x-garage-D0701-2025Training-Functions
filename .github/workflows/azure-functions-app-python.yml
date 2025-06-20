@@ -53,6 +53,17 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt --target=".python_packages/lib/site-packages"
         popd
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pytest
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+    - name: Run tests
+      env:
+        CONNECTION_STRING: ${{ secrets.CONNECTION_STRING }}
+      run: pytest
 
     - name: 'Run Azure Functions Action'
       uses: Azure/functions-action@v1
